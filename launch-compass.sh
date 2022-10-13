@@ -27,7 +27,7 @@ CONNECTION_STRING=${URI//<user>/$USER}
 CONNECTION_STRING=${CONNECTION_STRING//<password>/$PASSWORD}
 
 echo "Launching Compass"
-"$COMPASS_PATH" $CONNECTION_STRING &
+"$COMPASS_PATH" $CONNECTION_STRING 2>/dev/null &
 
 # Lock vault
 echo "Locking Bitwarden vault"
