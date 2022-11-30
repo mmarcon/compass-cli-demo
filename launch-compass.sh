@@ -28,7 +28,7 @@ PROTECT_CONNECTION_STRING_ARG=""
 if $PROTECT_CONNECTION_STRING; then PROTECT_CONNECTION_STRING_ARG="--protectConnectionStrings"; fi
 
 echo "Launching Compass"
-"$COMPASS_PATH" $URI --username $USER --password $PASSWORD $PROTECT_CONNECTION_STRING_ARG #2>/dev/null &
+"$COMPASS_PATH" $URI --username $USER --password $PASSWORD $PROTECT_CONNECTION_STRING_ARG 2>/dev/null &
 
 # Lock vault
 echo "Locking Bitwarden vault"
