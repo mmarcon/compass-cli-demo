@@ -2,10 +2,13 @@
 
 source ./secrets.sh
 
-COMPASS_PATH="/Applications/MongoDB Compass Dev.app/Contents/MacOS/MongoDB Compass Dev"
+COMPASS_PATH="/Applications/MongoDB Compass Beta.app/Contents/MacOS/MongoDB Compass Beta"
 
 # The cluster we are going to lookup in Bitwarden
 CLUSTER="Atlas Cluster Demo"
+
+# Do we want to hide the connection string from the user?
+PROTECT_CONNECTION_STRING=true
 
 # Login to bitwarden
 echo "Logging in with Bitwarden"
@@ -21,13 +24,11 @@ URI=$(bw get uri $CLUSTER)
 USER=$(bw get username $CLUSTER)
 PASSWORD=$(bw get password $CLUSTER)
 
-# Build the connection string by replacing <user> and <password>
-# placeholders in the URI
-CONNECTION_STRING=${URI//<user>/$USER}
-CONNECTION_STRING=${CONNECTION_STRING//<password>/$PASSWORD}
+PROTECT_CONNECTION_STRING_ARG=""
+if $PROTECT_CONNECTION_STRING; then PROTECT_CONNECTION_STRING_ARG="--protectConnectionStrings"; fi
 
 echo "Launching Compass"
-"$COMPASS_PATH" $CONNECTION_STRING 2>/dev/null &
+"$COMPASS_PATH" $URI --username $USER --password $PASSWORD $PROTECT_CONNECTION_STRING_ARG #2>/dev/null &
 
 # Lock vault
 echo "Locking Bitwarden vault"
