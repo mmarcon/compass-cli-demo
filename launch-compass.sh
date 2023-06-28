@@ -2,7 +2,7 @@
 
 source ./secrets.sh
 
-COMPASS_PATH="/Applications/MongoDB Compass Beta.app/Contents/MacOS/MongoDB Compass Beta"
+COMPASS_PATH="/Applications/MongoDB Compass.app/Contents/MacOS/MongoDB Compass"
 
 # The cluster we are going to lookup in Bitwarden
 CLUSTER="Atlas Cluster Demo"
